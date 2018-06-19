@@ -1,8 +1,13 @@
 // EXERCISE 1
 // This counter isn't working! The counter always says 0 even when you press 'increment'
-// This is because the reducer isn't implemented 
+// This is because the reducer isn't implemented
 
 let reducer1 = (state = 0, action) => {
+	if ( action.type === 'INCREMENT') {
+		return state + 1;
+	} else {
+		return state;
+	}
 	// Write code here that will:
 	// 1) check to see if the action is of type "INCREMENT" (see the dispatch call below)
 	// 2) return state + 1 if it's and "INCREMENT"

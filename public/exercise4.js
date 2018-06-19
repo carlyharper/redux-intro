@@ -9,7 +9,17 @@ let defaultTodos = {
 }
 
 // write a reducer that updated the todos array whenever a ADD_TODO action is dispatched
-let reducer4 = (state = defaultTodos, action) => defaultTodos;
+let reducer4 = (state = defaultTodos, action) => { //defaultTodos;
+	if (action.type === "ADD_TODO") {
+		return Object.assign({}, state, {
+			todos: [
+				...state.todos,
+				action.todoText,
+			]
+		})
+	}
+	return state;
+};
 
 let store4 = Redux.createStore(reducer4);
 
@@ -19,13 +29,13 @@ let todosListHTML = document.getElementById('todos');
 
 store4.subscribe(()=>{
 	let { todos } = store4.getState();
-	
+
 	let list = ``;
 	todos.forEach(todo => {
 		list += `<li>${todo}</li>`
 	})
 	todosListHTML.innerHTML = list;
-	
+
 })
 
 addTodoHTML.addEventListener('click', (e)=>{
